@@ -8,7 +8,7 @@ namespace TicTacToe.Tests
     public class TicTacToeShould
     {
         [Test]
-        public void InitialiseEmpty3x3Grid()
+        public void InitialiseEmpty3X3Grid()
         {
             var board = new Board(3, 3);
             Assert.AreEqual("", board.Get(0, 0));
