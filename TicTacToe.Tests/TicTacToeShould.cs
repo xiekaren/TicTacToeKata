@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TicTacToe.Tests
 {
@@ -30,6 +28,4 @@ namespace TicTacToe.Tests
             Assert.AreEqual("x", board.Get(0, 0));
         }
     }
-
-
 }
