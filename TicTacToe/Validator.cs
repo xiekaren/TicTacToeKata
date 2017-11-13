@@ -8,7 +8,7 @@ namespace TicTacToe
 {
     public class Validator
     {
-        public bool IsValid(string board, int position)
+        public bool IsValidPlay(string board, int position)
         {
             if (position >= board.Length || position < 0)
             {

@@ -20,7 +20,7 @@ namespace TicTacToe.Tests
         [TestCase("X        ", 9)]
         public void CheckForInvalidInputs(string board, int position)
         {
-            Assert.Throws<ArgumentException>(() => _validator.IsValid(board, position));
+            Assert.Throws<ArgumentException>(() => _validator.IsValidPlay(board, position));
         }
     }
 }
