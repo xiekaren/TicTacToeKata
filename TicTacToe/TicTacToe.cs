@@ -12,11 +12,12 @@ namespace TicTacToe
 
         public string MakePlay(string board, string token, int position)
         {
+            ValidatePlay(board, position);
             var newBoard = new StringBuilder(board) {[position] = char.Parse(token)};
             return newBoard.ToString();
         }
 
-        public bool IsValidPlay(string board, int position)
+        public void ValidatePlay(string board, int position)
         {
             if (position >= board.Length || position < 0)
             {
@@ -27,8 +28,6 @@ namespace TicTacToe
             {
                 throw new ArgumentException("Position has been taken.");
             }
-
-            return true;
         }
     }
 }

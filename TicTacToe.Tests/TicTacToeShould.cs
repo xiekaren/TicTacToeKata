@@ -27,12 +27,12 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        [TestCase("X        ", 0)]
-        [TestCase("X        ", -1)]
-        [TestCase("X        ", 9)]
-        public void CheckForInvalidPlays(string board, int position)
+        [TestCase("X        ", "X", 0)]
+        [TestCase("X        ", "X", -1)]
+        [TestCase("X        ", "X", 9)]
+        public void CheckForInvalidPlays(string board, string token, int position)
         {
-            Assert.Throws<ArgumentException>(() => _ticTacToe.IsValidPlay(board, position));
+            Assert.Throws<ArgumentException>(() => _ticTacToe.MakePlay(board, token, position));
         }
     }
 }
