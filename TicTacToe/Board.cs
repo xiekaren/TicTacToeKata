@@ -1,46 +1,34 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Generic;
 
 namespace TicTacToe
 {
     public class Board
     {
-        private readonly Hashtable _board;
+        private readonly List<string> _board;
+        private const int NumSpaces = 9;
 
-        public Board(int width, int height)
+        public Board()
         {
-            _board = new Hashtable();
-            Initialise(width, height);
-        }
-
-        private void Initialise(int width, int height)
-        {
-            for (var i = 0; i < height; i++)
+            _board = new List<string>();
+            for (var i = 0; i < NumSpaces; i++)
             {
-                for (var j = 0; j < width; j++)
-                {
-                    var key = $"{i}{j}";
-                    _board.Add(key, "");
-                }
+                _board.Add("");
             }
         }
 
-        public string Get(int x, int y)
+        public int GetLength()
         {
-            var key = $"{x}{y}";
-
-            if (_board.ContainsKey(key))
-            {
-                return (string)_board[key];
-            }
-
-            throw new ArgumentException("Position is not on grid.");
+            return _board.Count;
         }
 
-        public void Set(int x, int y, string value)
+        public void SetValue(int position, string value)
         {
-            var key = $"{x}{y}";
-            _board[key] = value;
+            _board[position] = value;
+        }
+
+        public string GetValueAt(int position)
+        {
+            return _board[position];
         }
     }
 }
