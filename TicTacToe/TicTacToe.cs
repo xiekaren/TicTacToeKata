@@ -6,9 +6,9 @@ namespace TicTacToe
 {
     public class TicTacToe
     {
-        public int Solve(List<string> board)
+        public int Solve(string board)
         {
-            return 0;
+            return board.IndexOf(" ", StringComparison.Ordinal);
         }
 
         public bool CanWin(string line, string playerToken)

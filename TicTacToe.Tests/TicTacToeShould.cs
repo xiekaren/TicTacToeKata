@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace TicTacToe.Tests
 {
     [TestFixture]
-    public class SolverShould
+    public class TicTacToeShould
     {
         private TicTacToe _ticTacToe;
 
@@ -13,6 +13,12 @@ namespace TicTacToe.Tests
         public void SetUp()
         {
             _ticTacToe = new TicTacToe();;
+        }
+
+        [Test]
+        public void ReturnFindFirstEmptyPositionToPlay()
+        {
+            Assert.AreEqual(3, _ticTacToe.Solve("XOX   XO "));
         }
 
         [Test]
