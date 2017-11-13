@@ -16,9 +16,22 @@ namespace TicTacToe
             return line.Count(x => x.ToString() == playerToken) == 2 && line.Contains(" ");
         }
 
-        public string[] GetRows(string board)
+        public List<string> GetRows(string board, int rowWidth, int numRows)
         {
-            return new[] {""};
+            var rows = new List<string>();
+
+            for (var i = 0; i < numRows; i++)
+            {
+                var row = "";
+
+                for (var j = 0; j < rowWidth; j++)
+                {
+                    row += board[3*i + j];
+                }
+                rows.Add(row);
+            }
+
+            return rows;
         }
     }
 }

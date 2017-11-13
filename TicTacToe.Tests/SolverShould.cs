@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace TicTacToe.Tests
@@ -33,7 +34,8 @@ namespace TicTacToe.Tests
         [Test]
         public void GetRows()
         {
-//            CollectionAssert.AreEqual(new[]{"XXX", "OOO", "XXX"}, _ticTacToe.GetRows("XXXOOOXXX"));
-        } 
+            CollectionAssert.AreEqual(new List<string> {"XXX", "OOO", "XXX"}, _ticTacToe.GetRows("XXXOOOXXX", 3, 3));
+        }
+
     }
 }
