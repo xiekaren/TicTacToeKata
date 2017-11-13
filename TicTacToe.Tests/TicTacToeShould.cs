@@ -42,5 +42,15 @@ namespace TicTacToe.Tests
         {
             Assert.AreEqual(expected, _ticTacToe.IsEndOfGame(board));
         }
+
+        [Test]
+        [TestCase(true, "XOXOXXOOO")]
+        [TestCase(true, "XXXOXXOXO")]
+        [TestCase(false,"XOXXOXOXO")]
+        public void CheckForWinInRows(bool expected, string board)
+        {
+            Assert.AreEqual(expected, _ticTacToe.CheckRowWin(board));
+        }
+
     }
 }
