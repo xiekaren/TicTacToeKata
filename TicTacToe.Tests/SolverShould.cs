@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace TicTacToe.Tests
 {
@@ -28,5 +29,20 @@ namespace TicTacToe.Tests
         {
             Assert.IsFalse(_solver.CanWin(line, playerToken));
         }
+
+        [Test]
+        [TestCase("X        ", 0)]
+        [TestCase("X        ", -1)]
+        [TestCase("X        ", 9)]
+        public void CheckForInvalidInputs(string board, int position)
+        {
+            Assert.Throws<ArgumentException>(() => _solver.IsValid(board, position));
+        }
+
+        [Test]
+        public void GetRows()
+        {
+            CollectionAssert.AreEqual(new[]{"XXX", "OOO", "XXX"}, _solver.GetRows("XXXOOOXXX"));
+        } 
     }
 }
