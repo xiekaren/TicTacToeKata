@@ -6,12 +6,12 @@ namespace TicTacToe.Tests
     [TestFixture]
     public class SolverShould
     {
-        private Solver _solver;
+        private TicTacToe _ticTacToe;
 
         [SetUp]
         public void SetUp()
         {
-            _solver = new Solver();;
+            _ticTacToe = new TicTacToe();;
         }
 
         [Test]
@@ -19,7 +19,7 @@ namespace TicTacToe.Tests
         [TestCase("X X", "X")]
         public void ReturnTrueWhenPlayerCanWin(string line, string playerToken)
         {
-            Assert.IsTrue(_solver.CanWin(line, playerToken));
+            Assert.IsTrue(_ticTacToe.CanWin(line, playerToken));
         }
 
         [Test]
@@ -27,22 +27,13 @@ namespace TicTacToe.Tests
         [TestCase("XX0", "X")]
         public void ReturnFalseWhenPlayerCannotWin(string line, string playerToken)
         {
-            Assert.IsFalse(_solver.CanWin(line, playerToken));
-        }
-
-        [Test]
-        [TestCase("X        ", 0)]
-        [TestCase("X        ", -1)]
-        [TestCase("X        ", 9)]
-        public void CheckForInvalidInputs(string board, int position)
-        {
-            Assert.Throws<ArgumentException>(() => _solver.IsValid(board, position));
+            Assert.IsFalse(_ticTacToe.CanWin(line, playerToken));
         }
 
         [Test]
         public void GetRows()
         {
-            CollectionAssert.AreEqual(new[]{"XXX", "OOO", "XXX"}, _solver.GetRows("XXXOOOXXX"));
+//            CollectionAssert.AreEqual(new[]{"XXX", "OOO", "XXX"}, _ticTacToe.GetRows("XXXOOOXXX"));
         } 
     }
 }
