@@ -34,5 +34,13 @@ namespace TicTacToe.Tests
         {
             Assert.Throws<ArgumentException>(() => _ticTacToe.MakePlay(board, token, position));
         }
+
+        [Test]
+        [TestCase(true,  "XOXOXOXOX")]
+        [TestCase(false, "X XOOXOXO")]
+        public void CheckForEndOfGame(bool expected, string board)
+        {
+            Assert.AreEqual(expected, _ticTacToe.IsEndOfGame(board));
+        }
     }
 }

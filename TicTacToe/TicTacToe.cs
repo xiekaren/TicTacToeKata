@@ -29,5 +29,10 @@ namespace TicTacToe
                 throw new ArgumentException("Position has been taken.");
             }
         }
+
+        public bool IsEndOfGame(string board)
+        {
+            return !board.Contains(" ");
+        }
     }
 }
