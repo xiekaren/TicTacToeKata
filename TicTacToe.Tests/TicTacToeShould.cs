@@ -52,5 +52,11 @@ namespace TicTacToe.Tests
             Assert.AreEqual(expected, _ticTacToe.CheckRowWin(board));
         }
 
+        [Test]
+        [TestCase(true, "O  O  O  ")]
+        public void CheckForWinInColumns(bool expected, string board)
+        {
+            Assert.AreEqual(expected, _ticTacToe.CheckColumnWin(board));
+        }
     }
 }

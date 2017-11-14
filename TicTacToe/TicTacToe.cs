@@ -7,9 +7,6 @@ namespace TicTacToe
 {
     public class TicTacToe
     {
-        private const int Width = 3;
-        private const int Height = 3;
-
         public int Solve(string board)
         {
             return board.IndexOf(" ", StringComparison.Ordinal);
@@ -30,7 +27,7 @@ namespace TicTacToe
         public bool CheckRowWin(string board)
         {
             var rows = Enumerable.Range(0, board.Length / 3).Select(i => board.Substring(i * 3, 3));
-            return rows.Any(r => r == "XXX" || r == "OOO");
+            return rows.Any(isWin);
         }
 
         private static void ValidatePlay(string board, int position)
@@ -46,5 +43,26 @@ namespace TicTacToe
             }
         }
 
+        public bool CheckColumnWin(string board)
+        {
+            for (var column = 0; column < 3; column++)
+            {
+                var columnLine = "";
+                for (var row = 0; row < 3; row++)
+                {
+                    columnLine += board[column + row * 3];
+                }
+                if (isWin(columnLine))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool isWin(string line)
+        {
+            return line.Distinct().Count() == 1;
+        }
     }
 }
