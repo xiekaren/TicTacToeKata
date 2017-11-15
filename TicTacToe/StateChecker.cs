@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TicTacToe
 {
@@ -8,11 +7,6 @@ namespace TicTacToe
         public bool IsEndOfGame(string board)
         {
             return !board.Contains(" ");
-        }
-
-        public bool IsWin(string line)
-        {
-            return line.Distinct().Count() == 1;
         }
 
         public string CheckForWinner(Board board)
@@ -30,6 +24,11 @@ namespace TicTacToe
                 if (IsWin(column)) return column.First().ToString();
             }
             return "";
+        }
+
+        private bool IsWin(string line)
+        {
+            return line.Distinct().Count() == 1;
         }
     }
 }
