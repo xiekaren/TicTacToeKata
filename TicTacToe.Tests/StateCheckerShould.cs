@@ -26,11 +26,19 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        [TestCase(true, "XXX")]
-        [TestCase(false, "XOX")]
-        public void CheckForWinInALine(bool expected, string line)
+        [TestCase("X", "XXX" +
+                       "   " +
+                       "   ")]
+        [TestCase("",  "XOX" +
+                       "XOX" +
+                       "OXO")]
+        [TestCase("O", "O X" +
+                       "OXX" +
+                       "O O")]
+        public void CheckForWin(string expected, string input)
         {
-            Assert.AreEqual(expected, _stateChecker.IsWin(line));
+            var board = new Board(input);
+            Assert.AreEqual(expected, _stateChecker.CheckForWinner(board));
         }
     }
 }
