@@ -60,7 +60,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateCheckerShould.cs" />
     <Compile Include="TicTacToeShould.cs" />
+    <Compile Include="BoardShould.cs" />
+    <Compile Include="ValidatorShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicTacToe\TicTacToe.csproj">

@@ -15,7 +15,7 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        public void ReturnFindFirstEmptyPositionToPlay()
+        public void ReturnFirstEmptyPositionToPlay()
         {
             Assert.AreEqual(3, _ticTacToe.Solve("XOX   XO "));
         }
@@ -24,41 +24,6 @@ namespace TicTacToe.Tests
         public void AddTokenToBoardAtPosition()
         {
             Assert.AreEqual("XOXXOXXOX", _ticTacToe.MakePlay("XOXXOXXO ", "X", 8));
-        }
-
-        [Test]
-        [TestCase("X        ", "X", 0)]
-        [TestCase("X        ", "X", -1)]
-        [TestCase("X        ", "X", 9)]
-        public void CheckForInvalidPlays(string board, string token, int position)
-        {
-            Assert.Throws<ArgumentException>(() => _ticTacToe.MakePlay(board, token, position));
-        }
-
-        [Test]
-        [TestCase(true,  "XOXOXOXOX")]
-        [TestCase(false, "X XOOXOXO")]
-        public void CheckForEndOfGame(bool expected, string board)
-        {
-            Assert.AreEqual(expected, _ticTacToe.IsEndOfGame(board));
-        }
-
-        [Test]
-        [TestCase(true, "XOXOXXOOO")]
-        [TestCase(true, "XXXOXXOXO")]
-        [TestCase(false,"XOXXOXOXO")]
-        public void CheckForWinInRows(bool expected, string board)
-        {
-            Assert.AreEqual(expected, _ticTacToe.CheckRowWin(board));
-        }
-
-        [Test]
-        [TestCase(true, "O  O  O  ")]
-        [TestCase(true, " X  X  X ")]
-        [TestCase(true, "  O  O  O")]
-        public void CheckForWinInColumns(bool expected, string board)
-        {
-            Assert.AreEqual(expected, _ticTacToe.CheckColumnWin(board));
         }
     }
 }
