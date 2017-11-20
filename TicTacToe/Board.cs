@@ -13,5 +13,18 @@
         {
             return !_board.Contains(" ");
         }
+
+        public string GetWinner()
+        {
+            if (_board.Contains("XXX"))
+            {
+                return "X";
+            }
+            if (_board.Contains("OOO"))
+            {
+                return "O";
+            }
+            return "";
+        }
     }
 }

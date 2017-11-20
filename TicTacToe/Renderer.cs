@@ -2,7 +2,7 @@
 {
     public class Renderer
     {
-        public virtual void PrintWinner()
+        public virtual void PrintWinner(string winner = "")
         {
         }
     }

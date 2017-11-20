@@ -13,10 +13,10 @@
 
         public void Start()
         {
-            if (_board.IsFilled())
-            {
-                _renderer.PrintWinner();
-            }
+            if (!_board.IsFilled()) return;
+
+            var winner = _board.GetWinner();
+            _renderer.PrintWinner(winner);
         }
     }
 }

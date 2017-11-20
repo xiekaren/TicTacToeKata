@@ -12,12 +12,12 @@ namespace TicTacToe.Tests
         public void SetUp()
         {
             _renderer = new Mock<Renderer>();  
-            _renderer.Setup(t => t.PrintWinner());
         }
 
         [Test]
         public void PrintWinnerWhenTheBoardIsFilled()
         {
+            _renderer.Setup(t => t.PrintWinner(It.IsAny<string>()));
             var board = new Board("XXO" +
                                   "OXO" +
                                   "OOX");
@@ -25,12 +25,13 @@ namespace TicTacToe.Tests
 
             game.Start();
 
-            _renderer.Verify(x => x.PrintWinner(), Times.Once);
+            _renderer.Verify(x => x.PrintWinner(It.IsAny<string>()), Times.Once);
         }
 
         [Test]
         public void NotPrintWinnerWhenTheBoardIsNotFilled()
         {
+            _renderer.Setup(t => t.PrintWinner(It.IsAny<string>()));
             var board = new Board("XXO" +
                                   "OXO" +
                                   "OO ");
@@ -38,7 +39,22 @@ namespace TicTacToe.Tests
 
             game.Start();
 
-            _renderer.Verify(x => x.PrintWinner(), Times.Never);
+            _renderer.Verify(x => x.PrintWinner(It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        //TODO: Inprogress
+        public void PrintGetAndPrintWinnerWhenBoardIsFilled()
+        {
+            _renderer.Setup(t => t.PrintWinner("O"));
+            var board = new Board("XXX" +
+                                  "XOO" +
+                                  "OOX");
+            var game = new TicTacToeGame(_renderer.Object, board);
+
+            game.Start();
+
+            _renderer.Verify(x => x.PrintWinner("O"), Times.Once);
         }
 
     }
