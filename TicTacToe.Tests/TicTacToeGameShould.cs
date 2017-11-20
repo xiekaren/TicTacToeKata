@@ -1,43 +1,45 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 
 namespace TicTacToe.Tests
 {
     [TestFixture]
     public class TicTacToeGameShould
     {
+        private Mock<Renderer> _renderer;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _renderer = new Mock<Renderer>();  
+            _renderer.Setup(t => t.PrintWinner());
+        }
+
         [Test]
-        public void EndWhenTheBoardIsFilled()
+        public void PrintWinnerWhenTheBoardIsFilled()
         {
-            var renderer = new Renderer();
-            var board = new Board("OXX" +
-                                  "OXX" +
-                                  "XOO");
-            var game = new TicTacToeGame(renderer, board);
-            Assert.AreEqual("Helo", board);
+            var board = new Board("XXO" +
+                                  "OXO" +
+                                  "OOX");
+            var game = new TicTacToeGame(_renderer.Object, board);
+
+            game.Start();
+
+            _renderer.Verify(x => x.PrintWinner(), Times.Once);
         }
-    }
 
-    public class Board
-    {
-        private string _board;
-
-        public Board(string input)
+        [Test]
+        public void NotPrintWinnerWhenTheBoardIsNotFilled()
         {
-            _board = input;
+            var board = new Board("XXO" +
+                                  "OXO" +
+                                  "OO ");
+            var game = new TicTacToeGame(_renderer.Object, board);
+
+            game.Start();
+
+            _renderer.Verify(x => x.PrintWinner(), Times.Never);
         }
-    }
 
-    public class TicTacToeGame
-    {
-        private Renderer _renderer;
-
-        public TicTacToeGame(Renderer renderer, Board board)
-        {
-            _renderer = renderer;
-        }
-    }
-
-    public class Renderer
-    {
     }
 }
