@@ -51,7 +51,7 @@ namespace TicTacToe
 
         private static bool IsWinningLine(string line)
         {
-            return line.Distinct().Count() == 1;
+            return line.Distinct().Count() == 1 && !line.Contains("-");
         }
     }
 }

@@ -19,11 +19,14 @@ namespace TicTacToe.Tests
                        "OOO" +
                        "OOX")]
         [TestCase("O", "OXX" +
-                       "OX " +
-                       "OO ")]
+                       "OX-" +
+                       "OO-")]
         [TestCase("",  "XXO" +
                        "OOX" +
                        "XOX")]
+        [TestCase("", "---" +
+                      "---" +
+                      "---")]
         public void PrintWinnerIfFound(string expected, string inputBoard)
         {
             _renderer.Setup(t => t.PrintWinner(expected));
