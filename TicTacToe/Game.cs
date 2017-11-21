@@ -5,22 +5,20 @@ namespace TicTacToe
 {
     public class Game
     {
-        private readonly UserInterface _userInterface;
-        private readonly Board _board;
+        private readonly Prompt _prompt;
+        private Board _board;
 
-        public Game(UserInterface userInterface, Board board)
+        public Game(Prompt prompt, Board board)
         {
-            _userInterface = userInterface;
+            _prompt = prompt;
             _board = board;
         }
 
         public void Start()
         {
-            _userInterface.PrintFormattedBoard(_board);
-            var desiredMove = _userInterface.ReadInput();
-
+            _prompt.PrintFormattedBoard(_board);
             var winner = _board.GetWinner();
-            _userInterface.PrintWinner(winner);
+            _prompt.PrintWinner(winner);
 
             if (_board.IsFilled())
             {
@@ -30,25 +28,17 @@ namespace TicTacToe
 
         private void EndGame()
         {
-            _userInterface.PrintGameEnded();
+            _prompt.PrintGameEnded();
         }
 
         public Board MakePlay(string token, int position)
         {
-            if (position >= _board.Get().Length || position < 0)
-                throw new ArgumentException("Please choose a position on the board.");
-
-            if (_board.Get()[position].ToString() != "-")
-                throw new ArgumentException("Please choose an empty position on the board.");
-
-            var newBoard = new StringBuilder(_board.Get());
-            newBoard[position] = Convert.ToChar(token);
-            return new Board(newBoard.ToString());
+            return _board.PlaceToken(token, position);
         }
 
         public int Solve(Board board)
         {
-            return board.Get().IndexOf("-", StringComparison.Ordinal);
+            return board.Grid.IndexOf("-", StringComparison.Ordinal);
         }
     }
 }

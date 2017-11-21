@@ -7,13 +7,13 @@ namespace TicTacToe.Tests
     [TestFixture]
     public class GameShould
     {
-        private Mock<UserInterface> _prompt;
+        private Mock<Prompt> _prompt;
         private Mock<Board> _board;
 
         [SetUp]
         public void SetUp()
         {
-            _prompt = new Mock<UserInterface>();
+            _prompt = new Mock<Prompt>();
             _board = new Mock<Board>();
         }
 
@@ -88,27 +88,7 @@ namespace TicTacToe.Tests
 
         private static bool AreEqual(Board board1, Board board2)
         {
-            return board1.Get() == board2.Get();
-        }
-
-        [Test]
-        [TestCase("choose a position on the board", "---" +
-                                                    "---" +
-                                                    "---", 9)]
-        [TestCase("choose a position on the board", "---" +
-                                                    "---" +
-                                                    "---", -1)]
-        [TestCase("choose an empty position", "X--" +
-                                              "---" +
-                                              "---", 0)]
-        public void PrintErrorForInvalidInsertionIntoBoard(string expectedMessage, string inputBoard, int position)
-        {
-            var board = new Board(inputBoard);
-
-            var game = new Game(_prompt.Object, board);
-
-            Assert.That(() => game.MakePlay("X", position),
-                Throws.TypeOf<ArgumentException>().With.Message.Contains(expectedMessage));
+            return board1.Grid == board2.Grid;
         }
 
         [Test]

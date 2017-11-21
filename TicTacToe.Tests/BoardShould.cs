@@ -17,5 +17,18 @@ namespace TicTacToe.Tests
             var board = new Board(inputBoard);
             Assert.AreEqual(expected, board.IsFilled());
         }
+
+        [Test]
+        [TestCase("X--" +
+                  "---" +
+                  "---", "X", 0)]
+        public void PlaceTokenAtPosition(string expectedBoard, string token, int position)
+        {
+            var board = new Board("---" +
+                                  "---" +
+                                  "---");
+            var actualBoard = board.PlaceToken(token, position);
+            Assert.AreEqual(expectedBoard, actualBoard.Grid);
+        }
     }
 }
