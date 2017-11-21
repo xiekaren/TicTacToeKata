@@ -22,7 +22,7 @@ namespace TicTacToe
             };
         }
 
-        public string Get()
+        public virtual string Get()
         {
             return _board;
         }

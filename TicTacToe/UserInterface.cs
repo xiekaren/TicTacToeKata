@@ -28,5 +28,9 @@ namespace TicTacToe
         {
             return Console.ReadLine();
         }
+
+        public virtual void VerifyInput(Board board, string inputPosition)
+        {
+        }
     }
 }

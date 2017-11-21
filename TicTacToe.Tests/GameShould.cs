@@ -7,13 +7,13 @@ namespace TicTacToe.Tests
     [TestFixture]
     public class GameShould
     {
-        private Mock<UserInterface> _userInterface;
+        private Mock<UserInterface> _prompt;
         private Mock<Board> _board;
 
         [SetUp]
         public void SetUp()
         {
-            _userInterface = new Mock<UserInterface>();
+            _prompt = new Mock<UserInterface>();
             _board = new Mock<Board>();
         }
 
@@ -32,13 +32,13 @@ namespace TicTacToe.Tests
                       "---")]
         public void PrintWinnerIfFound(string expected, string inputBoard)
         {
-            _userInterface.Setup(t => t.PrintWinner(expected));
+            _prompt.Setup(t => t.PrintWinner(expected));
             var board = new Board(inputBoard);
 
-            var game = new Game(_userInterface.Object, board);
+            var game = new Game(_prompt.Object, board);
             game.Start();
 
-            _userInterface.Verify(x => x.PrintWinner(expected), Times.Once);
+            _prompt.Verify(x => x.PrintWinner(expected), Times.Once);
         }
 
         [Test]
@@ -47,13 +47,13 @@ namespace TicTacToe.Tests
             _board = new Mock<Board>();
             _board.Setup(x => x.IsFilled()).Returns(true);
             _board.Setup(x => x.GetWinner()).Returns("");
-            _userInterface.Setup(x => x.PrintGameEnded());
+            _prompt.Setup(x => x.PrintGameEnded());
 
-            var game = new Game(_userInterface.Object, _board.Object);
+            var game = new Game(_prompt.Object, _board.Object);
             game.Start();
 
             _board.Verify(x => x.IsFilled(), Times.Once);
-            _userInterface.Verify(x => x.PrintGameEnded(), Times.Once);
+            _prompt.Verify(x => x.PrintGameEnded(), Times.Once);
         }
 
         [Test]
@@ -61,13 +61,13 @@ namespace TicTacToe.Tests
         {
             _board.Setup(x => x.IsFilled()).Returns(false);
             _board.Setup(x => x.GetWinner()).Returns("");
-            _userInterface.Setup(x => x.PrintGameEnded());
+            _prompt.Setup(x => x.PrintGameEnded());
 
-            var game = new Game(_userInterface.Object, _board.Object);
+            var game = new Game(_prompt.Object, _board.Object);
             game.Start();
 
             _board.Verify(x => x.IsFilled(), Times.Once);
-            _userInterface.Verify(x => x.PrintGameEnded(), Times.Never);
+            _prompt.Verify(x => x.PrintGameEnded(), Times.Never);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace TicTacToe.Tests
                                           "---" +
                                           "---");
 
-            var game = new Game(_userInterface.Object, board);
+            var game = new Game(_prompt.Object, board);
             var updatedBoard = game.MakePlay("X", 0);
 
             Assert.IsTrue(AreEqual(expectedBoard, updatedBoard));
@@ -105,7 +105,7 @@ namespace TicTacToe.Tests
         {
             var board = new Board(inputBoard);
 
-            var game = new Game(_userInterface.Object, board);
+            var game = new Game(_prompt.Object, board);
 
             Assert.That(() => game.MakePlay("X", position),
                 Throws.TypeOf<ArgumentException>().With.Message.Contains(expectedMessage));
@@ -118,24 +118,10 @@ namespace TicTacToe.Tests
                                   "---" +
                                   "---");
 
-            var game = new Game(_userInterface.Object, board);
+            var game = new Game(_prompt.Object, board);
             var desiredMove = game.Solve(board);
 
             Assert.AreEqual(2, desiredMove);
-        }
-
-        [Test]
-        public void ReadInput()
-        {
-            var board = new Mock<Board>();
-            _userInterface.Setup(x => x.ReadInput()).Returns("1");
-            _userInterface.Setup(x => x.PrintFormattedBoard(It.IsAny<Board>()));
-
-            var game = new Game(_userInterface.Object, board.Object);
-            game.Start();
-
-            _userInterface.Verify(x => x.PrintFormattedBoard(It.IsAny<Board>()));
-            _userInterface.Verify(x => x.ReadInput());
         }
     }
 }
