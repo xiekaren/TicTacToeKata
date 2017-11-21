@@ -4,7 +4,9 @@
     {
         public static void Main(string[] args)
         {
-            var ticTacToeGame = new Game(new Prompt(new InputValidator()), new Board());
+            var ticTacToeGame = new Game(new Prompt(new InputValidator()), new Board("---" +
+                                                                                     "---" +
+                                                                                     "---"));
             ticTacToeGame.Start();
         }
     }

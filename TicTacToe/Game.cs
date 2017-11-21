@@ -29,6 +29,7 @@ namespace TicTacToe
 
                 if (winner != "" || isFilled)
                 {
+                    _prompt.PrintFormattedBoard(_board);
                     _prompt.PrintWinner(winner);
                     EndGame();
                 }

@@ -46,7 +46,7 @@ namespace TicTacToe
 
         public string FormatBoard(Board board)
         {
-            return Regex.Replace(board.Grid, ".{3}", "$\n");
+            return Regex.Replace(board.Grid, ".{3}", "$0\n");
         }
 
         public int ReadValidPlayerMove(Board board)
