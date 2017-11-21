@@ -15,45 +15,24 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        public void PrintWinnerWhenTheBoardIsFilled()
+        [TestCase("X", "XXX" +
+                       "OOO" +
+                       "OOX")]
+        [TestCase("O", "OXX" +
+                       "OX " +
+                       "OO ")]
+        [TestCase("",  "XXO" +
+                       "OOX" +
+                       "XOX")]
+        public void PrintWinnerIfFound(string expected, string inputBoard)
         {
-            _renderer.Setup(t => t.PrintWinner(It.IsAny<string>()));
-            var board = new Board("XXO" +
-                                  "OXO" +
-                                  "OOX");
+            _renderer.Setup(t => t.PrintWinner(expected));
+            var board = new Board(inputBoard);
             var game = new TicTacToeGame(_renderer.Object, board);
 
             game.Start();
 
-            _renderer.Verify(x => x.PrintWinner(It.IsAny<string>()), Times.Once);
-        }
-
-        [Test]
-        public void NotPrintWinnerWhenTheBoardIsNotFilled()
-        {
-            _renderer.Setup(t => t.PrintWinner(It.IsAny<string>()));
-            var board = new Board("XXO" +
-                                  "OXO" +
-                                  "OO ");
-            var game = new TicTacToeGame(_renderer.Object, board);
-
-            game.Start();
-
-            _renderer.Verify(x => x.PrintWinner(It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
-        public void PrintGetAndPrintWinnerWhenBoardIsFilled()
-        {
-            _renderer.Setup(t => t.PrintWinner("X"));
-            var board = new Board("XXX" +
-                                  "XOO" +
-                                  "OOX");
-            var game = new TicTacToeGame(_renderer.Object, board);
-
-            game.Start();
-
-            _renderer.Verify(x => x.PrintWinner("X"), Times.Once);
+            _renderer.Verify(x => x.PrintWinner(expected), Times.Once);
         }
 
     }

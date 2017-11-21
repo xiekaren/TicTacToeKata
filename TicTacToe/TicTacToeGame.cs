@@ -5,7 +5,7 @@ namespace TicTacToe
     public class TicTacToeGame
     {
         private readonly Renderer _renderer;
-        private Board _board;
+        private readonly Board _board;
 
         public TicTacToeGame(Renderer renderer, Board board)
         {
@@ -15,8 +15,6 @@ namespace TicTacToe
 
         public void Start()
         {
-            if (!_board.IsFilled()) return;
-
             var winner = _board.GetWinner();
             _renderer.PrintWinner(winner);
         }
