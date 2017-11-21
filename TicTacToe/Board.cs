@@ -6,13 +6,11 @@ namespace TicTacToe
     public class Board
     {
         private const string EmptyPosition = "-";
-        private string _board;
+        private readonly string _board;
         private readonly List<List<int>> _winningPositions;
 
-        public Board()
-        {
-            
-        }
+        public Board() {}
+
         public Board(string input)
         {
             _board = input;
@@ -29,6 +27,11 @@ namespace TicTacToe
                 new List<int> {0, 4, 8},
                 new List<int> {2, 4, 6}
             };
+        }
+
+        public string Get()
+        {
+            return _board;
         }
 
         public virtual bool IsFilled()
@@ -58,5 +61,6 @@ namespace TicTacToe
         {
             return line.Distinct().Count() == 1 && !line.Contains(EmptyPosition);
         }
+
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Principal;
+using System.Text;
 
 namespace TicTacToe
 {
@@ -29,6 +31,19 @@ namespace TicTacToe
         private void EndGame()
         {
             _renderer.PrintGameEnded();
+        }
+
+        public Board MakePlay(string token, int position)
+        {
+            if (position >= _board.Get().Length || position < 0)
+                throw new ArgumentException("Please choose a position on the board.");
+
+            if (_board.Get()[position].ToString() != "-")
+                throw new ArgumentException("Please choose an empty position on the board.");
+
+            var newBoard = new StringBuilder(_board.Get());
+            newBoard[position] = Convert.ToChar(token);
+            return new Board(newBoard.ToString());
         }
     }
 }

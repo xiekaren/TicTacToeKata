@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using NUnit.Framework;
 
 namespace TicTacToe.Tests
@@ -12,7 +13,7 @@ namespace TicTacToe.Tests
         [SetUp]
         public void SetUp()
         {
-            _renderer = new Mock<Renderer>();  
+            _renderer = new Mock<Renderer>();
             _board = new Mock<Board>();
         }
 
@@ -23,9 +24,9 @@ namespace TicTacToe.Tests
         [TestCase("O", "OXX" +
                        "OX-" +
                        "OO-")]
-        [TestCase("",  "XXO" +
-                       "OOX" +
-                       "XOX")]
+        [TestCase("", "XXO" +
+                      "OOX" +
+                      "XOX")]
         [TestCase("", "---" +
                       "---" +
                       "---")]
@@ -69,5 +70,45 @@ namespace TicTacToe.Tests
             _renderer.Verify(x => x.PrintGameEnded(), Times.Never);
         }
 
+        [Test]
+        public void UpdateBoardWithTokenAtPosition()
+        {
+            var board = new Board("---" +
+                                  "---" +
+                                  "---");
+            var expectedBoard = new Board("X--" +
+                                          "---" +
+                                          "---");
+
+            var game = new TicTacToeGame(_renderer.Object, board);
+            var updatedBoard = game.MakePlay("X", 0);
+
+            Assert.IsTrue(AreEqual(expectedBoard, updatedBoard));
+        }
+
+        private static bool AreEqual(Board board1, Board board2)
+        {
+            return board1.Get() == board2.Get();
+        }
+
+        [Test]
+        [TestCase("choose a position on the board", "---" +
+                                                    "---" +
+                                                    "---", 9)]
+        [TestCase("choose a position on the board", "---" +
+                                                    "---" +
+                                                    "---", -1)]
+        [TestCase("choose an empty position", "X--" +
+                                              "---" +
+                                              "---", 0)]
+        public void PrintErrorForInvalidInsertionIntoBoard(string expectedMessage, string inputBoard, int position)
+        {
+            var board = new Board(inputBoard);
+
+            var game = new TicTacToeGame(_renderer.Object, board);
+
+            Assert.That(() => game.MakePlay("X", position),
+                Throws.TypeOf<ArgumentException>().With.Message.Contains(expectedMessage));
+        }
     }
 }
