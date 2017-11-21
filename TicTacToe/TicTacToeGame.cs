@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace TicTacToe
 {
@@ -17,6 +19,16 @@ namespace TicTacToe
         {
             var winner = _board.GetWinner();
             _renderer.PrintWinner(winner);
+
+            if (_board.IsFilled())
+            {
+                EndGame();
+            }
+        }
+
+        private void EndGame()
+        {
+            _renderer.PrintGameEnded();
         }
     }
 }

@@ -5,9 +5,14 @@ namespace TicTacToe
 {
     public class Board
     {
+        private const string EmptyPosition = "-";
         private string _board;
         private readonly List<List<int>> _winningPositions;
 
+        public Board()
+        {
+            
+        }
         public Board(string input)
         {
             _board = input;
@@ -26,12 +31,12 @@ namespace TicTacToe
             };
         }
 
-        public bool IsFilled()
+        public virtual bool IsFilled()
         {
-            return !_board.Contains(" ");
+            return !_board.Contains(EmptyPosition);
         }
 
-        public string GetWinner()
+        public virtual string GetWinner()
         {
             foreach (var winningCombo in _winningPositions)
             {
@@ -51,7 +56,7 @@ namespace TicTacToe
 
         private static bool IsWinningLine(string line)
         {
-            return line.Distinct().Count() == 1 && !line.Contains("-");
+            return line.Distinct().Count() == 1 && !line.Contains(EmptyPosition);
         }
     }
 }
