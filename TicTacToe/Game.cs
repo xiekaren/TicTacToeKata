@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
 using System.Text;
 
 namespace TicTacToe
 {
-    public class TicTacToeGame
+    public class Game
     {
         private readonly Renderer _renderer;
         private readonly Board _board;
 
-        public TicTacToeGame(Renderer renderer, Board board)
+        public Game(Renderer renderer, Board board)
         {
             _renderer = renderer;
             _board = board;
@@ -44,6 +41,11 @@ namespace TicTacToe
             var newBoard = new StringBuilder(_board.Get());
             newBoard[position] = Convert.ToChar(token);
             return new Board(newBoard.ToString());
+        }
+
+        public int Solve(Board board)
+        {
+            return board.Get().IndexOf("-", StringComparison.Ordinal);
         }
     }
 }

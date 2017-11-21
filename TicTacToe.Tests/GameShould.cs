@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace TicTacToe.Tests
 {
     [TestFixture]
-    public class TicTacToeGameShould
+    public class GameShould
     {
         private Mock<Renderer> _renderer;
         private Mock<Board> _board;
@@ -35,7 +35,7 @@ namespace TicTacToe.Tests
             _renderer.Setup(t => t.PrintWinner(expected));
             var board = new Board(inputBoard);
 
-            var game = new TicTacToeGame(_renderer.Object, board);
+            var game = new Game(_renderer.Object, board);
             game.Start();
 
             _renderer.Verify(x => x.PrintWinner(expected), Times.Once);
@@ -49,7 +49,7 @@ namespace TicTacToe.Tests
             _board.Setup(x => x.GetWinner()).Returns("");
             _renderer.Setup(x => x.PrintGameEnded());
 
-            var game = new TicTacToeGame(_renderer.Object, _board.Object);
+            var game = new Game(_renderer.Object, _board.Object);
             game.Start();
 
             _board.Verify(x => x.IsFilled(), Times.Once);
@@ -63,7 +63,7 @@ namespace TicTacToe.Tests
             _board.Setup(x => x.GetWinner()).Returns("");
             _renderer.Setup(x => x.PrintGameEnded());
 
-            var game = new TicTacToeGame(_renderer.Object, _board.Object);
+            var game = new Game(_renderer.Object, _board.Object);
             game.Start();
 
             _board.Verify(x => x.IsFilled(), Times.Once);
@@ -80,7 +80,7 @@ namespace TicTacToe.Tests
                                           "---" +
                                           "---");
 
-            var game = new TicTacToeGame(_renderer.Object, board);
+            var game = new Game(_renderer.Object, board);
             var updatedBoard = game.MakePlay("X", 0);
 
             Assert.IsTrue(AreEqual(expectedBoard, updatedBoard));
@@ -105,10 +105,23 @@ namespace TicTacToe.Tests
         {
             var board = new Board(inputBoard);
 
-            var game = new TicTacToeGame(_renderer.Object, board);
+            var game = new Game(_renderer.Object, board);
 
             Assert.That(() => game.MakePlay("X", position),
                 Throws.TypeOf<ArgumentException>().With.Message.Contains(expectedMessage));
+        }
+
+        [Test]
+        public void SolveByTakingTheFirstEmptyPosition()
+        {
+            var board = new Board("XO-" +
+                                  "---" +
+                                  "---");
+
+            var game = new Game(_renderer.Object, board);
+            var desiredMove = game.Solve(board);
+
+            Assert.AreEqual(2, desiredMove);
         }
     }
 }
