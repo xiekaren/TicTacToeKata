@@ -16,26 +16,51 @@ namespace TicTacToe
 
         public void Start()
         {
-            _prompt.PrintFormattedBoard(_board);
-            var winner = _board.GetWinner();
-            _prompt.PrintWinner(winner);
-
-            if (_board.IsFilled())
+            while (true)
             {
-                EndGame();
+                _prompt.PrintInstructions();
+                _prompt.PrintFormattedBoard(_board);
+
+                MakePlayerMove();
+                MakeComputerMove();
+
+                var winner = _board.GetWinner();
+                var isFilled = _board.IsFilled();
+
+                if (winner != "" || isFilled)
+                {
+                    _prompt.PrintWinner(winner);
+                    EndGame();
+                }
+            }
+        }
+
+        private void MakePlayerMove()
+        {
+            var playerMove = _prompt.ReadValidPlayerMove(_board);
+            _board = MakePlay("O", playerMove);
+        }
+
+        private void MakeComputerMove()
+        {
+            var computerMove = Solve(_board);
+            if (computerMove != -1)
+            {
+                _board = MakePlay("X", computerMove);
             }
         }
 
         private void EndGame()
         {
             _prompt.PrintGameEnded();
+            _prompt.ReadShouldPlayAgain();
         }
 
         public Board MakePlay(string token, int position)
         {
             return _board.PlaceToken(token, position);
         }
-
+   
         public int Solve(Board board)
         {
             return board.Grid.IndexOf("-", StringComparison.Ordinal);

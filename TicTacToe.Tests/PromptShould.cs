@@ -27,15 +27,5 @@ namespace TicTacToe.Tests
 
             Assert.AreEqual("---\n---\n---\n", formattedBoard);
         }
-
-        [Test]
-        public void ReadValidPlayerMove()
-        {
-            var board = new Board("---" +
-                                  "---" +
-                                  "---");
-            var playerMove = _prompt.ReadValidPlayerMove(board, "1");
-            Assert.AreEqual(1, playerMove);
-        }
     }
 }

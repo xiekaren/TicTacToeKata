@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe
@@ -8,7 +7,9 @@ namespace TicTacToe
     {
         private readonly InputValidator _validator;
 
-        public Prompt() { }
+        public Prompt()
+        {
+        }
 
         public Prompt(InputValidator validator)
         {
@@ -17,11 +18,25 @@ namespace TicTacToe
 
         public virtual void PrintWinner(string winner = "")
         {
+            if (winner == "")
+            {
+                Console.Write("Draw!");
+            }
+            else
+            {
+                Console.WriteLine($"Player {winner} is the winner!");
+            }
         }
 
         public virtual void PrintGameEnded()
         {
-            
+            Console.WriteLine("Game finished.\n" +
+                              "Press ENTER to play again. Press anything else to quit.");
+        }
+
+        public void PrintInstructions()
+        {
+            Console.WriteLine("Please enter a position between 0 and 8.");
         }
 
         public virtual void PrintFormattedBoard(Board board)
@@ -31,15 +46,16 @@ namespace TicTacToe
 
         public string FormatBoard(Board board)
         {
-            return Regex.Replace(board.Grid, ".{3}", "$0\n");
+            return Regex.Replace(board.Grid, ".{3}", "$\n");
         }
 
-        public int ReadValidPlayerMove(Board board, string inputMove)
+        public int ReadValidPlayerMove(Board board)
         {
             while (true)
             {
                 try
                 {
+                    var inputMove = Console.ReadLine();
                     _validator.ValidateMove(board, inputMove);
                     return int.Parse(inputMove);
                 }
@@ -48,6 +64,16 @@ namespace TicTacToe
                     Console.WriteLine(e.Message);
                 }
             }
+        }
+
+        public bool ReadShouldPlayAgain()
+        {
+            if (Console.ReadKey().Key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+            Environment.Exit(0);
+            return false;
         }
     }
 }
