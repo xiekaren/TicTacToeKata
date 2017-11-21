@@ -43,10 +43,9 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        //TODO: Inprogress
         public void PrintGetAndPrintWinnerWhenBoardIsFilled()
         {
-            _renderer.Setup(t => t.PrintWinner("O"));
+            _renderer.Setup(t => t.PrintWinner("X"));
             var board = new Board("XXX" +
                                   "XOO" +
                                   "OOX");
@@ -54,7 +53,7 @@ namespace TicTacToe.Tests
 
             game.Start();
 
-            _renderer.Verify(x => x.PrintWinner("O"), Times.Once);
+            _renderer.Verify(x => x.PrintWinner("X"), Times.Once);
         }
 
     }

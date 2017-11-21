@@ -1,4 +1,6 @@
-﻿namespace TicTacToe
+﻿using System.Linq;
+
+namespace TicTacToe
 {
     public class TicTacToeGame
     {
