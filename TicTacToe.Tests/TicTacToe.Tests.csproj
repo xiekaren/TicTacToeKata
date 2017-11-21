@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="BoardShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RendererShould.cs" />
+    <Compile Include="UserInterfaceShould.cs" />
     <Compile Include="GameShould.cs" />
   </ItemGroup>
   <ItemGroup>

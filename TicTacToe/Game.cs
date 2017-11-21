@@ -5,19 +5,22 @@ namespace TicTacToe
 {
     public class Game
     {
-        private readonly Renderer _renderer;
+        private readonly UserInterface _userInterface;
         private readonly Board _board;
 
-        public Game(Renderer renderer, Board board)
+        public Game(UserInterface userInterface, Board board)
         {
-            _renderer = renderer;
+            _userInterface = userInterface;
             _board = board;
         }
 
         public void Start()
         {
+            _userInterface.PrintFormattedBoard(_board);
+            var desiredMove = _userInterface.ReadInput();
+
             var winner = _board.GetWinner();
-            _renderer.PrintWinner(winner);
+            _userInterface.PrintWinner(winner);
 
             if (_board.IsFilled())
             {
@@ -27,7 +30,7 @@ namespace TicTacToe
 
         private void EndGame()
         {
-            _renderer.PrintGameEnded();
+            _userInterface.PrintGameEnded();
         }
 
         public Board MakePlay(string token, int position)
