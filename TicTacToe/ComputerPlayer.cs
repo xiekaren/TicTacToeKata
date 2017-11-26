@@ -2,7 +2,7 @@
 {
     public class ComputerPlayer : IPlayer
     {
-        public int GetDesiredMove(Board board)
+        public int Solve(Board board)
         {
             for (var i = 1; i <= board.Length; i++)
             {

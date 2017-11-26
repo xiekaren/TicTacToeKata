@@ -105,7 +105,7 @@ namespace TicTacToe.Tests
             Assert.AreEqual(initialGrid, initialFormattedGrid);
 
             game.MakePlay("X", 1);
-            var actualGrid = game.MakePlay("O", _computerPlayer.GetDesiredMove(_board));
+            var actualGrid = game.MakePlay("O", _computerPlayer.Solve(_board));
             Assert.AreEqual(expectedGrid, actualGrid);
         }
     }

@@ -2,7 +2,7 @@
 {
     public class HumanPlayer : IPlayer
     {
-        public int GetDesiredMove(Board board)
+        public int Solve(Board board)
         {
             throw new System.NotImplementedException();
         }

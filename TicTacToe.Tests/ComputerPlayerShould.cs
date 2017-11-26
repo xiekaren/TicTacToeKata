@@ -20,7 +20,7 @@ namespace TicTacToe.Tests
             var board = new Board(initialGrid.Split(','));
             IPlayer player = new ComputerPlayer();
 
-            var desiredMove = player.GetDesiredMove(board);
+            var desiredMove = player.Solve(board);
 
             Assert.AreEqual(expectedMove, desiredMove);
         }
