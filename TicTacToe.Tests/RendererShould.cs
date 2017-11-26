@@ -8,15 +8,15 @@ namespace TicTacToe.Tests
         [Test]
         [TestCase(new[]
         {
-            "-", "-", "-",
-            "-", "-", "-",
-            "-", "-", "-"
+            "O", "-", "-",
+            "-", "X", "-",
+            "-", "-", "O"
         },
-            " - | - | - \n" +
+            " O | - | - \n" +
             "-----------\n" +
-            " - | - | - \n" +
+            " - | X | - \n" +
             "-----------\n" +
-            " - | - | - ")]
+            " - | - | O ")]
         public void DisplayBoardInGridFormat(string[] input, string expectedGrid)
         {
             var game = new Renderer();

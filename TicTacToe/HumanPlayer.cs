@@ -6,7 +6,5 @@
         {
             throw new System.NotImplementedException();
         }
-
-        public string Token { get; set; }
     }
 }

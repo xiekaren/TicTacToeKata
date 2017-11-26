@@ -19,7 +19,7 @@ namespace TicTacToe
 
         public string MakePlay(string token, int position)
         {
-            _board.PlaceTokenAtPosition(token, position);
+            _board.PlaceTokenAt(token, position);
             return _renderer.FormatBoardAsGrid(_board);
         }
     }

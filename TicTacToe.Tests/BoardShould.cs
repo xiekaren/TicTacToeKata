@@ -12,7 +12,7 @@ namespace TicTacToe.Tests
             const string token = "X";
 
             var board = new Board();
-            board.PlaceTokenAtPosition(token, position);
+            board.PlaceTokenAt(token, position);
 
             Assert.AreEqual(token, board.GetTokenAt(position));
         }

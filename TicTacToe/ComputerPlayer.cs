@@ -4,13 +4,11 @@
     {
         public int GetDesiredMove(Board board)
         {
-            for (var i = 0; i < board.Length; i++)
+            for (var i = 1; i <= board.Length; i++)
             {
-                if (board.Cell(i) == "-") return i + 1;
+                if (board.GetTokenAt(i) == "-") return i;
             }
             return -1;
         }
-
-        public string Token { get; set; }
     }
 }
