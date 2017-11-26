@@ -22,13 +22,6 @@ namespace TicTacToe.Tests
         [Test]
         [TestCase(
             1, "O",
-
-            " - | - | - \n" +
-            "-----------\n" +
-            " - | - | - \n" +
-            "-----------\n" +
-            " - | - | - ",
-
             " O | - | - \n" +
             "-----------\n" +
             " - | - | - \n" +
@@ -36,19 +29,12 @@ namespace TicTacToe.Tests
             " - | - | - ")]
         [TestCase(
             5, "X",
-
-            " - | - | - \n" +
-            "-----------\n" +
-            " - | - | - \n" +
-            "-----------\n" +
-            " - | - | - ",
-
             " - | - | - \n" +
             "-----------\n" +
             " - | X | - \n" +
             "-----------\n" +
             " - | - | - ")]
-        public void PlayTokenAtDesiredPosition(int position, string token, string initialGrid, string expectedGrid)
+        public void PlayTokenAtDesiredPosition(int position, string token, string expectedGrid)
         {
             var game = new TicTacToe(_renderer, _board, _computerPlayer, _humanPlayer);
             var actualGrid = game.MakePlay(token, position);
