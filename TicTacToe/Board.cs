@@ -6,7 +6,6 @@ namespace TicTacToe
 
         public int Length => _cells.Length;
         public string Cell(int position) => _cells[position];
-
         private readonly string[] _cells;
 
         public Board()
@@ -28,6 +27,11 @@ namespace TicTacToe
         {
             var cellPosition = position - 1;
             _cells[cellPosition] = token;
+        }
+
+        public string GetTokenAt(int position)
+        {
+            return _cells[position - 1];
         }
     }
 }
