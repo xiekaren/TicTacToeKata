@@ -86,26 +86,20 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        public void ChooseFirstFreePositionOnBoardToPlay()
+        public void ReturnStateWithComputerPlayerMove()
         {
-            const string initialGrid =  " - | - | - \n" +
-                                        "-----------\n" +
-                                        " - | - | - \n" +
-                                        "-----------\n" +
-                                        " - | - | - ";
-
-            const string expectedGrid = " X | O | - \n" +
+            const string humanPlayerToken = "O";
+            const int humanPlayerMove = 1;
+            const string expectedGrid = " O | X | - \n" +
                                         "-----------\n" +
                                         " - | - | - \n" +
                                         "-----------\n" +
                                         " - | - | - ";
 
             var game = new TicTacToe(_renderer, _board, _computerPlayer, _humanPlayer);
-            var initialFormattedGrid = _renderer.FormatBoardAsGrid(_board);
-            Assert.AreEqual(initialGrid, initialFormattedGrid);
+            game.MakePlay(humanPlayerToken, humanPlayerMove);
+            var actualGrid = game.MakePlay(_computerPlayer.Token, _computerPlayer.Solve(_board));
 
-            game.MakePlay("X", 1);
-            var actualGrid = game.MakePlay("O", _computerPlayer.Solve(_board));
             Assert.AreEqual(expectedGrid, actualGrid);
         }
     }
