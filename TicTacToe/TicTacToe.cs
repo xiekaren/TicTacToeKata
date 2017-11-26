@@ -17,7 +17,7 @@ namespace TicTacToe
             _player2 = humanPlayer;
         }
 
-        public string MakePlay(int position, string token)
+        public string MakePlay(string token, int position)
         {
             _board.PlaceTokenAtPosition(token, position);
             return _renderer.FormatBoardAsGrid(_board);

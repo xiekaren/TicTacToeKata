@@ -2,23 +2,28 @@
 {
     public interface IPlayer
     {
-        int Solve(Board board);
+        int GetDesiredMove(Board board);
+        string Token { get; set; }
     }
 
     public class HumanPlayer : IPlayer
     {
-        public int Solve(Board board)
+        public int GetDesiredMove(Board board)
         {
             throw new System.NotImplementedException();
         }
+
+        public string Token { get; set; }
     }
 
     public class ComputerPlayer : IPlayer
     {
-        public int Solve(Board board)
+        public int GetDesiredMove(Board board)
         {
             throw new System.NotImplementedException();
         }
+
+        public string Token { get; set; }
     }
 
 }
