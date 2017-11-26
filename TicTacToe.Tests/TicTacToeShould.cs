@@ -85,7 +85,7 @@ namespace TicTacToe.Tests
             Assert.AreEqual(expectedGrid2, actualGrid2);
         }
 
-//        [Test]
+        [Test]
         public void ChooseFirstFreePositionOnBoardToPlay()
         {
             const string initialGrid =  " - | - | - \n" +

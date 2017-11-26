@@ -12,10 +12,10 @@ namespace TicTacToe.Tests
         [TestCase("X,-,-," +
                   "-,-,-," +
                   "-,-,-,", 2)]
-        [TestCase("X,X,-," +
-                  "-,-,-," +
-                  "-,-,-,", 3)]
-        public void GetFirstFreePositionAsDesiredMove(string initialGrid, int expectedMove)
+        [TestCase("X,X,O," +
+                  "O,-,X," +
+                  "-,-,-,", 5)]
+        public void SolveByTakingTheFirstFreePosition(string initialGrid, int expectedMove)
         {
             var board = new Board(initialGrid.Split(','));
             IPlayer player = new ComputerPlayer();
