@@ -8,15 +8,15 @@ namespace TicTacToe.Tests
         private Renderer _renderer;
         private Board _board;
         private ComputerPlayer _computerPlayer;
-        private HumanPlayer _humanPlayer;
-
+        private WinChecker _winChecker;
+       
         [SetUp]
         public void SetUp()
         {
             _renderer = new Renderer();
             _board = new Board();
             _computerPlayer = new ComputerPlayer();
-            _humanPlayer = new HumanPlayer();
+            _winChecker = new WinChecker();
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace TicTacToe.Tests
             " - | - | - ")]
         public void PlayTokenAtDesiredPosition(int position, string token, string expectedGrid)
         {
-            var game = new TicTacToe(_renderer, _board, _computerPlayer, _humanPlayer);
+            var game = new TicTacToe(_renderer, _board, _winChecker);
             var actualGrid = game.MakePlay(token, position);
             Assert.AreEqual(expectedGrid, actualGrid);
         }
@@ -64,7 +64,7 @@ namespace TicTacToe.Tests
             " - | - | - ")]
         public void SaveGameState(string token1, int move1, string token2, int move2, string initialGrid, string expectedGrid1, string expectedGrid2)
         {
-            var game = new TicTacToe(_renderer, _board, _computerPlayer, _humanPlayer);
+            var game = new TicTacToe(_renderer, _board, _winChecker);
             var actualGrid1 = game.MakePlay(token1, move1);
             Assert.AreEqual(expectedGrid1, actualGrid1);
             var actualGrid2 = game.MakePlay(token2, move2);
@@ -82,11 +82,30 @@ namespace TicTacToe.Tests
                                         "-----------\n" +
                                         " - | - | - ";
 
-            var game = new TicTacToe(_renderer, _board, _computerPlayer, _humanPlayer);
+            var game = new TicTacToe(_renderer, _board, _winChecker);
             game.MakePlay(humanPlayerToken, humanPlayerMove);
             var actualGrid = game.MakePlay(_computerPlayer.Token, _computerPlayer.Solve(_board));
 
             Assert.AreEqual(expectedGrid, actualGrid);
+        }
+
+        [Test]
+        public void PrintWinnerIfFound()
+        {
+            _board = new Board(new []
+            {
+                "X", "X", "-",
+                "O", "O", "-",
+                "-", "-", "-"
+            });
+            const string expectedMessage = "Computer wins!";
+
+            var game = new TicTacToe(_renderer, _board, _winChecker);
+            game.MakePlay("X", 3);
+            var winner = game.CheckWinner();
+            var actualMessage = _renderer.FormatWinnerMessage(winner);
+            
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
     }
 }

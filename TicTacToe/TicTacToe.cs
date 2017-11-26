@@ -4,21 +4,24 @@
     {
         private readonly Renderer _renderer;
         private readonly Board _board;
-        private IPlayer _player1;
-        private IPlayer _player2;
+        private readonly WinChecker _winChecker;
 
-        public TicTacToe(Renderer renderer, Board board, IPlayer computerPlayer, IPlayer humanPlayer)
+        public TicTacToe(Renderer renderer, Board board, WinChecker winChecker)
         {
             _renderer = renderer;
             _board = board;
-            _player1 = computerPlayer;
-            _player2 = humanPlayer;
+            _winChecker = winChecker;
         }
 
         public string MakePlay(string token, int position)
         {
             _board.PlaceTokenAt(token, position);
             return _renderer.FormatBoardAsGrid(_board);
+        }
+
+        public string CheckWinner()
+        {
+            return _winChecker.GetWinner(_board);
         }
     }
 }

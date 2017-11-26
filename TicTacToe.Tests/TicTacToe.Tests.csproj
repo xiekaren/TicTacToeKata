@@ -64,6 +64,7 @@
     <Compile Include="RendererShould.cs" />
     <Compile Include="TicTacToeShould.cs" />
     <Compile Include="BoardShould.cs" />
+    <Compile Include="WinCheckerShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicTacToe\TicTacToe.csproj">
