@@ -43,5 +43,30 @@ namespace TicTacToe.Tests.GameElements
 
             Assert.AreEqual(3, board.Length);
         }
+
+        [Test]
+        [TestCase(new[]
+        {
+            "-", "-", "-",
+            "-", "-", "-",
+            "-", "-", "-"
+        }, false)]
+        [TestCase(new[]
+        {
+            "X", "O", "X",
+            "O", "X", "O",
+            "O", "X", "O"
+        }, true)]
+        [TestCase(new[]
+        {
+            "-", "O", "-",
+            "O", "X", "-",
+            "-", "-", "-"
+        }, false)]
+        public void CheckIfFilled(string[] inputBoard, bool isFilled)
+        {
+            var board = new Board(inputBoard);
+            Assert.AreEqual(isFilled, board.IsFilled());
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace TicTacToe.GameElements
 {
     public class Board
@@ -29,6 +31,11 @@ namespace TicTacToe.GameElements
         public string GetTokenAt(int position)
         {
             return _cells[position - 1];
+        }
+
+        public bool IsFilled()
+        {
+            return _cells.All(cell => cell == "O" || cell == "X");
         }
     }
 }
