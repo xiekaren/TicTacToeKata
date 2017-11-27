@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using TicTacToe.GameElements;
 
-namespace TicTacToe.Tests
+namespace TicTacToe.Tests.GameElements
 {
     [TestFixture]
     public class BoardShould

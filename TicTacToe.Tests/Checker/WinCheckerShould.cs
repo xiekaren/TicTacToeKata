@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using TicTacToe.Checker;
+using TicTacToe.GameElements;
 
-namespace TicTacToe.Tests
+namespace TicTacToe.Tests.Checker
 {
     [TestFixture]
     public class WinCheckerShould

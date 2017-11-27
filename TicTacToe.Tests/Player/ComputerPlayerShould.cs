@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using TicTacToe.GameElements;
+using TicTacToe.Player;
 
-namespace TicTacToe.Tests
+namespace TicTacToe.Tests.Player
 {
     [TestFixture]
     public class ComputerPlayerShould

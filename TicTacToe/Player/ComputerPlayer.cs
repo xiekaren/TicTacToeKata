@@ -1,4 +1,6 @@
-﻿namespace TicTacToe
+﻿using TicTacToe.GameElements;
+
+namespace TicTacToe.Player
 {
     public class ComputerPlayer : IPlayer
     {

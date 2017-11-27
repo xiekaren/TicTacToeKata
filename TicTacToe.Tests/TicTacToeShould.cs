@@ -1,5 +1,8 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TicTacToe.Checker;
+using TicTacToe.GameElements;
+using TicTacToe.Interface;
+using TicTacToe.Player;
 
 namespace TicTacToe.Tests
 {

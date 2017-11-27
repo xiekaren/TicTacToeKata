@@ -1,6 +1,7 @@
 using System.Text;
+using TicTacToe.GameElements;
 
-namespace TicTacToe
+namespace TicTacToe.Interface
 {
     public class Renderer
     {

@@ -1,4 +1,8 @@
-﻿namespace TicTacToe
+﻿using TicTacToe.Checker;
+using TicTacToe.GameElements;
+using TicTacToe.Interface;
+
+namespace TicTacToe
 {
     public class TicTacToe
     {

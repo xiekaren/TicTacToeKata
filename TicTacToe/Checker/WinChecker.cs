@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TicTacToe.GameElements;
 
-namespace TicTacToe
+namespace TicTacToe.Checker
 {
     public class WinChecker
     {

@@ -1,6 +1,7 @@
 ﻿using System;
+using TicTacToe.GameElements;
 
-namespace TicTacToe
+namespace TicTacToe.Checker
 {
     public class InputChecker
     {

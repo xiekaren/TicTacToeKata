@@ -1,6 +1,7 @@
 ﻿using System;
+using TicTacToe.GameElements;
 
-namespace TicTacToe
+namespace TicTacToe.Player
 {
     public class HumanPlayer  : IPlayer
     {

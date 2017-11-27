@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using TicTacToe.GameElements;
+using TicTacToe.Interface;
 
-namespace TicTacToe.Tests
+namespace TicTacToe.Tests.Interface
 {
     [TestFixture]
     public class RendererShould
