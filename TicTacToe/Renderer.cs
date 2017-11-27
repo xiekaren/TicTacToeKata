@@ -17,7 +17,7 @@ namespace TicTacToe
             return formattedBoard.ToString();
         }
 
-        public string FormatWinnerMessage(string winner = "")
+        public string FormatWinnerMessage(string winner)
         {
             if (winner == "O") return "You win!";
             if (winner == "X") return "Computer wins!";

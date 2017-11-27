@@ -28,11 +28,21 @@ namespace TicTacToe
         {
             foreach (var winningCombo in _winningCombos)
             {
-                var line = winningCombo.Aggregate("", (current, position) => current + board.GetTokenAt(position));
-                if (line.Distinct().Count() == 1 && !line.Contains("-")) return line[0].ToString();
+                var line = AggregateLine(board, winningCombo);
+                if (IsWin(line)) return line.First().ToString();
             }
 
             return "";
+        }
+
+        private static string AggregateLine(Board board, IEnumerable<int> winningCombo)
+        {
+            return winningCombo.Aggregate("", (current, position) => current + board.GetTokenAt(position));
+        }
+
+        private static bool IsWin(string line)
+        {
+            return line.Distinct().Count() == 1 && !line.Contains("-");
         }
     }
 }
