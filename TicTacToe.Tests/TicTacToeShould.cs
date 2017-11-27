@@ -128,15 +128,5 @@ namespace TicTacToe.Tests
             
             Assert.AreEqual(expectedMessage, actualMessage);
         }
-
-        //[Test]
-        //[TestCase("X", -1, "Please choose a position on the board (1-9).")]
-        public void GiveInputErrorMessageIfPlayIsInvalid(string token, int position, string expectedMessage)
-        {
-            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
-
-            Assert.That(() => game.MakePlay(token, position), 
-                Throws.TypeOf<ArgumentException>().With.Message.EqualTo(expectedMessage));
-        }
     }
 }
