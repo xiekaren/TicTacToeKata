@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace TicTacToe.Tests
 {
@@ -9,6 +10,7 @@ namespace TicTacToe.Tests
         private Board _board;
         private ComputerPlayer _computerPlayer;
         private WinChecker _winChecker;
+        private InputChecker _inputChecker;
        
         [SetUp]
         public void SetUp()
@@ -17,6 +19,7 @@ namespace TicTacToe.Tests
             _board = new Board();
             _computerPlayer = new ComputerPlayer();
             _winChecker = new WinChecker();
+            _inputChecker = new InputChecker();
         }
 
         [Test]
@@ -36,7 +39,7 @@ namespace TicTacToe.Tests
             " - | - | - ")]
         public void PlayTokenAtDesiredPosition(int position, string token, string expectedGrid)
         {
-            var game = new TicTacToe(_renderer, _board, _winChecker);
+            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
             var actualGrid = game.MakePlay(token, position);
             Assert.AreEqual(expectedGrid, actualGrid);
         }
@@ -64,7 +67,7 @@ namespace TicTacToe.Tests
             " - | - | - ")]
         public void SaveGameState(string token1, int move1, string token2, int move2, string initialGrid, string expectedGrid1, string expectedGrid2)
         {
-            var game = new TicTacToe(_renderer, _board, _winChecker);
+            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
             var actualGrid1 = game.MakePlay(token1, move1);
             Assert.AreEqual(expectedGrid1, actualGrid1);
             var actualGrid2 = game.MakePlay(token2, move2);
@@ -82,7 +85,7 @@ namespace TicTacToe.Tests
                                         "-----------\n" +
                                         " - | - | - ";
 
-            var game = new TicTacToe(_renderer, _board, _winChecker);
+            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
             game.MakePlay(humanPlayerToken, humanPlayerMove);
             var actualGrid = game.MakePlay(_computerPlayer.Token, _computerPlayer.Solve(_board));
 
@@ -117,7 +120,7 @@ namespace TicTacToe.Tests
         public void PrintWinnerIfFound(string[] board, string tokenToPlay, int positionToPlay, string expectedMessage)
         {
             _board = new Board(board);
-            var game = new TicTacToe(_renderer, _board, _winChecker);
+            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
 
             game.MakePlay(tokenToPlay, positionToPlay);
             var winner = game.CheckWinner();
@@ -126,9 +129,14 @@ namespace TicTacToe.Tests
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        public void PrintInputErrorMessageIfPlayIsInvalid()
+        //[Test]
+        //[TestCase("X", -1, "Please choose a position on the board (1-9).")]
+        public void GiveInputErrorMessageIfPlayIsInvalid(string token, int position, string expectedMessage)
         {
-            
+            var game = new TicTacToe(_renderer, _board, _winChecker, _inputChecker);
+
+            Assert.That(() => game.MakePlay(token, position), 
+                Throws.TypeOf<ArgumentException>().With.Message.EqualTo(expectedMessage));
         }
     }
 }
