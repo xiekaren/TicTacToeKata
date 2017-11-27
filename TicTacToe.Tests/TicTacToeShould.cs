@@ -90,18 +90,36 @@ namespace TicTacToe.Tests
         }
 
         [Test]
-        public void PrintWinnerIfFound()
+        [TestCase(new[]
         {
-            _board = new Board(new []
-            {
-                "X", "X", "-",
-                "O", "O", "-",
-                "-", "-", "-"
-            });
-            const string expectedMessage = "Computer wins!";
-
+            "X", "X", "-",
+            "O", "O", "-",
+            "-", "-", "-"
+        }, 
+            "X", 3, 
+            "Computer wins!")]
+        [TestCase(new[]
+        {
+            "X", "X", "-",
+            "O", "O", "-",
+            "-", "-", "-"
+        },
+            "O", 6,
+            "You win!")]
+        [TestCase(new[]
+        {
+            "X", "X", "O",
+            "O", "O", "X",
+            "-", "O", "X"
+        },
+            "X", 7,
+            "Draw!")]
+        public void PrintWinnerIfFound(string[] board, string tokenToPlay, int positionToPlay, string expectedMessage)
+        {
+            _board = new Board(board);
             var game = new TicTacToe(_renderer, _board, _winChecker);
-            game.MakePlay("X", 3);
+
+            game.MakePlay(tokenToPlay, positionToPlay);
             var winner = game.CheckWinner();
             var actualMessage = _renderer.FormatWinnerMessage(winner);
             
