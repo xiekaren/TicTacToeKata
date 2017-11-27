@@ -6,18 +6,35 @@ namespace TicTacToe.Tests
     public class WinCheckerShould
     {
         [Test]
-        public void CheckForWinner()
+        [TestCase(new[]
         {
-            var board = new Board(new []
-            {
-                "-", "-","-",
-                "O", "O","O",
-                "-", "-","-"
-            });
-
+            "X", "X", "O",
+            "O", "O", "X",
+            "-", "O", "X"
+        }, "")]
+        [TestCase(new[]
+        {
+            "X", "X", "O",
+            "O", "O", "X",
+            "O", "O", "X"
+        }, "O")]
+        [TestCase(new[]
+        {
+            "X", "X", "X",
+            "O", "X", "O",
+            "O", "O", "X"
+        }, "X")]
+        [TestCase(new[]
+        {
+            "X", "X", "O",
+            "O", "X", "X",
+            "O", "X", "O"
+        }, "X")]
+        public void CheckForWinner(string[] inputBoard, string expectedWinner)
+        {
+            var board = new Board(inputBoard);
             var winChecker = new WinChecker();
-
-            Assert.AreEqual("O", winChecker.GetWinner(board));
+            Assert.AreEqual(expectedWinner, winChecker.GetWinner(board));
         }
     }
 }
