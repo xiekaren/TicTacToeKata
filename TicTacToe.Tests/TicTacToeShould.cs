@@ -125,5 +125,10 @@ namespace TicTacToe.Tests
             
             Assert.AreEqual(expectedMessage, actualMessage);
         }
+
+        public void PrintInputErrorMessageIfPlayIsInvalid()
+        {
+            
+        }
     }
 }

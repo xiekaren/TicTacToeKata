@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToe
 {
     public class WinChecker
     {
-        private List<List<int>> WinningCombos;
+        private readonly List<List<int>> _winningCombos;
 
         public WinChecker()
         {
-            WinningCombos = new List<List<int>>
+            _winningCombos = new List<List<int>>
             {
                 new List<int> {1,2,3},
                 new List<int> {4,5,6},
@@ -27,7 +26,7 @@ namespace TicTacToe
 
         public string GetWinner(Board board)
         {
-            foreach (var winningCombo in WinningCombos)
+            foreach (var winningCombo in _winningCombos)
             {
                 var line = winningCombo.Aggregate("", (current, position) => current + board.GetTokenAt(position));
                 if (line.Distinct().Count() == 1 && !line.Contains("-")) return line[0].ToString();

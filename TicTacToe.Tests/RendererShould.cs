@@ -23,5 +23,16 @@ namespace TicTacToe.Tests
             var actualGrid = game.FormatBoardAsGrid(new Board(input));
             Assert.AreEqual(expectedGrid, actualGrid);
         }
+
+        [Test]
+        [TestCase("", "Draw!")]
+        [TestCase("O", "You win!")]
+        [TestCase("X", "Computer wins!")]
+        public void FormatWinnerMessage(string winner, string expectedMessage)
+        {
+            var game = new Renderer();
+            var actualMessage = game.FormatWinnerMessage(winner);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
     }
 }
