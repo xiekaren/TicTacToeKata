@@ -5,7 +5,6 @@ namespace TicTacToe.Tests
     [TestFixture]
     public class BoardShould
     {
-        [Test]
         [TestCase(new[]
         {
             "-", "-", "-",
@@ -35,6 +34,24 @@ namespace TicTacToe.Tests
             });
             board.SetSquare(1, "X");
             Assert.AreEqual("X", board.GetSquare(1));
+        }
+
+        [TestCase(new[]
+        {
+            "-", "-", "-",
+            "-", "-", "-",
+            "-", "-", "-"
+        }, false)]
+        [TestCase(new[]
+        {
+            "X", "O", "X",
+            "X", "O", "O",
+            "O", "X", "X"
+        }, true)]
+        public void CheckIfFilled(string[] input, bool expected)
+        {
+            var board = new Board(input);
+            Assert.AreEqual(expected, board.IsFilled());
         }
     }
 }
