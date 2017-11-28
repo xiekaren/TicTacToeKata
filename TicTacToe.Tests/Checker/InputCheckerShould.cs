@@ -12,7 +12,7 @@ namespace TicTacToe.Tests.Checker
         [TestCase("-1", "Please enter a position from 1 to 9.")]
         [TestCase("10", "Please enter a position from 1 to 9.")]
         [TestCase("5", "Please enter an unoccupied position from 1 to 9.")]
-        public void GiveErrorMessageForInvalidPlaysForBoard(string input, string expectedMessage)
+        public void ValidateInput(string input, string expectedMessage)
         {
             var inputChecker = new InputChecker();
             var board = new Board(new []
