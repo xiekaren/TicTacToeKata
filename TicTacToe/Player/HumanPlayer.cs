@@ -7,12 +7,10 @@ namespace TicTacToe.Player
     public class HumanPlayer : IPlayer
     {
         private readonly InputChecker _inputChecker;
-        private readonly ConsoleWrapper _consoleWrapper;
-
-        public HumanPlayer(InputChecker inputChecker, ConsoleWrapper consoleWrapper)
+        
+        public HumanPlayer(InputChecker inputChecker)
         {
             _inputChecker = inputChecker;
-            _consoleWrapper = consoleWrapper;
         }
 
         public int Solve(Board board)
@@ -21,29 +19,15 @@ namespace TicTacToe.Player
             {
                 try
                 {
-                    var input = _consoleWrapper.ReadLine();
+                    var input = Console.ReadLine();
                     _inputChecker.Validate(board, input);
                     return int.Parse(input);
                 }
                 catch (ArgumentException e)
                 {
-                    _consoleWrapper.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
             }
-
         }
-    }
-
-    public class ConsoleWrapper
-    {
-        public virtual string ReadLine()
-        {
-            return Console.ReadLine();
-        }
-
-        public virtual void WriteLine(string line)
-        {
-            Console.WriteLine(line);
-        }
-    }
+    }  
 }
