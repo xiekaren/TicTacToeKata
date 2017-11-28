@@ -5,8 +5,8 @@ namespace TicTacToe
     public class Board
     {
         public const string BlankSquare = "-";
-        private readonly string[] _squares;
         public int Length => _squares.Length;
+        private readonly string[] _squares;
 
         public Board(string[] input)
         {

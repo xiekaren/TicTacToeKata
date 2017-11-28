@@ -8,11 +8,11 @@ namespace TicTacToe
         {
             var formattedBoard = new StringBuilder();
 
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
+            formattedBoard.Append("\n " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
             formattedBoard.Append("\n-----------\n");
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
+            formattedBoard.Append(" " + board.GetSquare(4) + " | " + board.GetSquare(5) + " | " + board.GetSquare(6) + " ");
             formattedBoard.Append("\n-----------\n");
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
+            formattedBoard.Append(" " + board.GetSquare(7) + " | " + board.GetSquare(8) + " | " + board.GetSquare(9) + " \n");
 
             return formattedBoard.ToString();
         }
@@ -24,12 +24,15 @@ namespace TicTacToe
 
         public string RenderWin(string winner)
         {
-            if (winner == "")
+            if (string.IsNullOrEmpty(winner))
             {
                 return "Draw!";
             }
-
-            return $"Player {winner} wins!";
+            if (winner == TicTacToe.XToken || winner == TicTacToe.OToken)
+            {
+                return $"Player {winner} wins!";
+            }
+            return "";
         }
     }
 }

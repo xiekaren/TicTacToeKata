@@ -23,6 +23,12 @@ namespace TicTacToe.Tests
             "X", "O", "O",
             "X", "-", "O"
         }, "X")]
+        [TestCase(new[]
+        {
+            "X", "X", "X",
+            "-", "O", "O",
+            "O", "-", "O"
+        }, "X")]
         public void GetWinner(string[] input, string expectedWinner)
         {
             var board = new Board(input);

@@ -12,7 +12,7 @@ namespace TicTacToe
                 int inputAsNumber;
 
                 if (int.TryParse(input, out inputAsNumber) && 
-                    inputAsNumber > 0 && inputAsNumber < board.Length)
+                    inputAsNumber > 0 && inputAsNumber <= board.Length)
                 {
                     return inputAsNumber;
                 }

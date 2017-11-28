@@ -35,7 +35,7 @@ namespace TicTacToe
 
         private static bool IsWin(string line)
         {
-            return line.Distinct().Count() == 1 && !line.Contains("-");
+            return line.Distinct().Count() == 1 && !line.Contains(Board.BlankSquare);
         }
     }
 }

@@ -71,7 +71,6 @@
     <Compile Include="ComputerPlayerShould.cs" />
     <Compile Include="DisplayShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TicTacToeShould.cs" />
     <Compile Include="WinCheckerShould.cs" />
   </ItemGroup>
   <ItemGroup>
