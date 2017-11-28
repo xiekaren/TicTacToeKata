@@ -68,10 +68,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardShould.cs" />
+    <Compile Include="ComputerPlayerShould.cs" />
     <Compile Include="DisplayShould.cs" />
-    <Compile Include="GameStateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TicTacToeShould.cs" />
+    <Compile Include="WinCheckerShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicTacToe\TicTacToe.csproj">

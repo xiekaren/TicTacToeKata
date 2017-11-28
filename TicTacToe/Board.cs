@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TicTacToe
 {
     public class Board
     {
-        private const string BlankSquare = "-";
+        public const string BlankSquare = "-";
         private readonly string[] _squares;
+        public int Length => _squares.Length;
 
         public Board(string[] input)
         {

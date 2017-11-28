@@ -5,18 +5,24 @@ namespace TicTacToe
     public class TicTacToe
     {
         private readonly Board _board;
-        public string CurrentPlayer = "X";
-        private readonly GameState _gameState;
+        private readonly WinChecker _winChecker;
 
-        public TicTacToe(Board board, GameState gameState)
+        public string CurrentPlayer = "X";
+        
+        public TicTacToe(Board board, WinChecker winChecker)
         {
             _board = board;
-            _gameState = gameState;
+            _winChecker = winChecker;
         }
 
         public bool IsFinished()
         {
-            return _gameState.HasEnded(_board);
+            return _board.IsFilled() || _winChecker.GetWinner(_board) != "";
+        }
+
+        public void ToggleCurrentPlayer()
+        {
+            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
         }
     }
 }

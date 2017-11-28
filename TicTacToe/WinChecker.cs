@@ -3,14 +3,12 @@ using System.Linq;
 
 namespace TicTacToe
 {
-    public class GameState
+    public class WinChecker
     {
         private readonly List<List<int>> _winningCombos;
-        public string CurrentPlayer { get; private set; }
 
-        public GameState(string currentPlayer)
+        public WinChecker()
         {
-            CurrentPlayer = currentPlayer;
             _winningCombos = new List<List<int>>
             {
                 new List<int> { 1, 2, 3 }, new List<int> { 4, 5, 6 }, new List<int> { 7, 8, 9 },
@@ -19,7 +17,7 @@ namespace TicTacToe
             };
         }
 
-        public string Winner(Board board)
+        public string GetWinner(Board board)
         {
             foreach (var winningCombo in _winningCombos)
             {
@@ -38,16 +36,6 @@ namespace TicTacToe
         private static bool IsWin(string line)
         {
             return line.Distinct().Count() == 1 && !line.Contains("-");
-        }
-
-        public bool HasEnded(Board board)
-        {
-            return board.IsFilled() || Winner(board) != "";
-        }
-
-        public void ToggleCurrentPlayer()
-        {
-            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
         }
     }
 }
