@@ -3,7 +3,7 @@
     public class Board
     {
         private const string BlankSquare = "-";
-        private string[] _squares;
+        private readonly string[] _squares;
 
         public Board(string[] input)
         {
@@ -19,9 +19,14 @@
             }
         }
 
-        public string GetSquare(int i)
+        public string GetSquare(int position)
         {
-            return _squares[i - 1];
+            return _squares[position - 1];
+        }
+
+        public void SetSquare(int position, string value)
+        {
+            _squares[position - 1] = value;
         }
     }
 }

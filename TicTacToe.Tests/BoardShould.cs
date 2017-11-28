@@ -23,5 +23,18 @@ namespace TicTacToe.Tests
             var board = new Board(inputSquares);
             Assert.AreEqual(expectedSquare, board.GetSquare(position));
         }
+
+        [Test]
+        public void SetSquare()
+        {
+            var board = new Board(new[]
+            {
+                "-", "-", "-",
+                "-", "-", "-",
+                "-", "-", "-"
+            });
+            board.SetSquare(1, "X");
+            Assert.AreEqual("X", board.GetSquare(1));
+        }
     }
 }
