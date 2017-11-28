@@ -19,7 +19,17 @@ namespace TicTacToe
 
         public string RenderInstructions()
         {
-            return "Please choose an unoccupied position from 1-9";
+            return "Please enter an unoccupied position from 1-9.";
+        }
+
+        public string RenderWin(string winner)
+        {
+            if (winner == "")
+            {
+                return "Draw!";
+            }
+
+            return $"Player {winner} wins!";
         }
     }
 }
