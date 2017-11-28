@@ -4,17 +4,17 @@ namespace TicTacToe
 {
     public class TicTacToe
     {
-        public string FormatBoard(Board board)
+        private readonly Board _board;
+        public string CurrentPlayer = "X";
+
+        public TicTacToe(Board board)
         {
-            var formattedBoard = new StringBuilder();
+            _board = board;
+        }
 
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
-            formattedBoard.Append("\n-----------\n");
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
-            formattedBoard.Append("\n-----------\n");
-            formattedBoard.Append(" " + board.GetSquare(1) + " | " + board.GetSquare(2) + " | " + board.GetSquare(3) + " ");
-
-            return formattedBoard.ToString();
+        public void ToggleCurrentPlayer()
+        {
+            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
         }
     }
 }

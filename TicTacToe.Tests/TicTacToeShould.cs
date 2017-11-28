@@ -6,26 +6,13 @@ namespace TicTacToe.Tests
     public class TicTacToeShould
     {
         [Test]
-        public void FormatBoard()
+        public void ToggleBetweenXandO()
         {
-            var input = new[]
-            {
-                "-", "-", "-",
-                "-", "-", "-",
-                "-", "-", "-"
-            };
-
-            const string expectedBoard = " - | - | - " +
-                                         "\n-----------\n" +
-                                         " - | - | - " +
-                                         "\n-----------\n" +
-                                         " - | - | - ";
-
-            var board = new Board(input);
-            var game = new TicTacToe();
-
-            var actualBoard = game.FormatBoard(board);
-            Assert.AreEqual(expectedBoard, actualBoard);
+            var board = new Board();
+            var game = new TicTacToe(board);
+            Assert.AreEqual("X", game.CurrentPlayer);
+            game.ToggleCurrentPlayer();
+            Assert.AreEqual("O", game.CurrentPlayer);
         }
     }
 }
