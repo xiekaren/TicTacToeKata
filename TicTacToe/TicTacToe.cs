@@ -14,11 +14,6 @@ namespace TicTacToe
             _gameState = gameState;
         }
 
-        public void ToggleCurrentPlayer()
-        {
-            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
-        }
-
         public bool IsFinished()
         {
             return _gameState.HasEnded(_board);

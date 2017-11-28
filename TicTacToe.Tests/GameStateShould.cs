@@ -15,7 +15,7 @@ namespace TicTacToe.Tests
                 "-", "-", "O"
             });
 
-            var gameState = new GameState();
+            var gameState = new GameState("X");
             Assert.AreEqual("O", gameState.Winner(board));
         }
 
@@ -35,8 +35,17 @@ namespace TicTacToe.Tests
         public void CheckIfGameEnded(string[] inputSquares, bool expectedResult)
         {
             var board = new Board(inputSquares);
-            var gameState = new GameState();
+            var gameState = new GameState("X");
             Assert.AreEqual(expectedResult, gameState.HasEnded(board));
+        }
+
+        [Test]
+        public void ToggleCurrentPlayer()
+        {
+            var gameState = new GameState("X");
+            Assert.AreEqual("X", gameState.CurrentPlayer);
+            gameState.ToggleCurrentPlayer();
+            Assert.AreEqual("O", gameState.CurrentPlayer);
         }
     }
 }

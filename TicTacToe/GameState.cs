@@ -6,21 +6,16 @@ namespace TicTacToe
     public class GameState
     {
         private readonly List<List<int>> _winningCombos;
+        public string CurrentPlayer { get; private set; }
 
-        public GameState()
+        public GameState(string currentPlayer)
         {
+            CurrentPlayer = currentPlayer;
             _winningCombos = new List<List<int>>
             {
-                new List<int> { 1, 2, 3 },
-                new List<int> { 4, 5, 6 },
-                new List<int> { 7, 8, 9 },
-
-                new List<int> { 1, 4, 7 },
-                new List<int> { 2, 5, 8 },
-                new List<int> { 3, 6, 9 },
-
-                new List<int> { 1, 5, 9 },
-                new List<int> { 3, 5, 7 },
+                new List<int> { 1, 2, 3 }, new List<int> { 4, 5, 6 }, new List<int> { 7, 8, 9 },
+                new List<int> { 1, 4, 7 }, new List<int> { 2, 5, 8 }, new List<int> { 3, 6, 9 },
+                new List<int> { 1, 5, 9 }, new List<int> { 3, 5, 7 },
             };
         }
 
@@ -48,6 +43,11 @@ namespace TicTacToe
         public bool HasEnded(Board board)
         {
             return board.IsFilled() || Winner(board) != "";
+        }
+
+        public void ToggleCurrentPlayer()
+        {
+            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
         }
     }
 }
