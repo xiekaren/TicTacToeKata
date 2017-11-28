@@ -1,4 +1,7 @@
-﻿namespace TicTacToe
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TicTacToe
 {
     public class Board
     {
@@ -27,6 +30,11 @@
         public void SetSquare(int position, string value)
         {
             _squares[position - 1] = value;
+        }
+
+        public bool IsFilled()
+        {
+            return _squares.All(s => s != BlankSquare);
         }
     }
 }

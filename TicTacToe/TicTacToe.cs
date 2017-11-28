@@ -6,15 +6,22 @@ namespace TicTacToe
     {
         private readonly Board _board;
         public string CurrentPlayer = "X";
+        private readonly GameState _gameState;
 
-        public TicTacToe(Board board)
+        public TicTacToe(Board board, GameState gameState)
         {
             _board = board;
+            _gameState = gameState;
         }
 
         public void ToggleCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
+        }
+
+        public bool IsFinished()
+        {
+            return _gameState.HasEnded(_board);
         }
     }
 }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BoardShould.cs" />
     <Compile Include="DisplayShould.cs" />
+    <Compile Include="GameStateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TicTacToeShould.cs" />
   </ItemGroup>

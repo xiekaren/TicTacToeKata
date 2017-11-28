@@ -9,7 +9,7 @@ namespace TicTacToe.Tests
         public void ToggleBetweenXandO()
         {
             var board = new Board();
-            var game = new TicTacToe(board);
+            var game = new TicTacToe(board, new GameState());
             Assert.AreEqual("X", game.CurrentPlayer);
             game.ToggleCurrentPlayer();
             Assert.AreEqual("O", game.CurrentPlayer);
