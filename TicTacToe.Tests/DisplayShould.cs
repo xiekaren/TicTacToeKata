@@ -26,6 +26,5 @@ namespace TicTacToe.Tests
 
             Assert.AreEqual(expectedBoard, actualBoard);
         }
-
     }
 }

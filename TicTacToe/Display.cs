@@ -16,5 +16,10 @@ namespace TicTacToe
 
             return formattedBoard.ToString();
         }
+
+        public string RenderInstructions()
+        {
+            return "Please choose an unoccupied position from 1-9";
+        }
     }
 }
